@@ -57,7 +57,7 @@ const Column: FC<ColumnProps> = ({ column, onDelete, onEdit }) => {
       </div>
       <div className={styles.columnCards}>
         {cards?.map((card) => (
-          <Card key={card.id} card={card} column={column} />
+          <Card key={card.id} card={card} />
         ))}
       </div>
       <button className={styles.addCardbutton} onClick={() => handleAddCard()}>

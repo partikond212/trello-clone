@@ -18,7 +18,7 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
   const { mutate, isPending: isEditing } = useEditCard(card);
   const { showNotification } = useNotification();
   const [title, setTitle] = useState(card.title);
-  const [description, setDescription] = useState(card.description);
+  const [description, setDescription] = useState(card.description ?? "");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     mutate(
@@ -33,24 +33,29 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
     );
   };
   return (
-    <Modal
-      title={`Вы точно хотите изменить карточку ${card.title}`}
-      isOpen={isOpen}
-    >
+    <Modal title="Редактировать карточку" isOpen={isOpen}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={title}
-          placeholder="Новое название карточки"
+          placeholder="Название карточки"
           onChange={(e) => setTitle(e.target.value)}
+          autoFocus
         />
         <input
           type="text"
           value={description}
-          placeholder="Новое описание карточки"
+          placeholder="Описание карточки"
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit">{isEditing ? "Изменяется" : "Изменить"}</button>
+        <div>
+          <button type="button" onClick={closeModal}>
+            Отмена
+          </button>
+          <button type="submit" disabled={isEditing}>
+            {isEditing ? "Сохраняется..." : "Сохранить"}
+          </button>
+        </div>
       </form>
     </Modal>
   );

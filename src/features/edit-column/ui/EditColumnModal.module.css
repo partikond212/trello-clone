@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 8px;
+  min-width: 320px;
+  max-width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #172b4d;
+}
+
+.modal p {
+  color: #475569;
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.modal input[type='text'] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #172b4d;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin: 4px 0 12px;
+}
+
+.modal input[type='text']::placeholder {
+  color: #9ca3af;
+}
+
+.modal input[type='text']:focus {
+  outline: none;
+  border-color: #0079bf;
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.actionButtons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.actionButtons button:first-child {
+  background: #f1f2f4;
+  color: #172b4d;
+}
+
+.actionButtons button:first-child:hover {
+  background: #e6e9f0;
+}
+
+.actionButtons button:last-child {
+  background: #0079bf;
+  color: white;
+}
+
+.actionButtons button:last-child:hover {
+  background: #026aa7;
+}
+
+.actionButtons button:last-child:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

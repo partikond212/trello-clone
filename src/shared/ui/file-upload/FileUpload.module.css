@@ -1,0 +1,24 @@
+.fileUploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f1f2f4;
+  border: 1px solid #e6e9f0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #172b4d;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.fileUploadButton:hover {
+  background: #e6e9f0;
+  border-color: #c1c7d0;
+}
+
+.fileUploadButton:active {
+  background: #d2d6dc;
+}

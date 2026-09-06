@@ -1,0 +1,15 @@
+.overlay {
+  position: fixed; /* не absolute — почему? думай про скролл и родителя */
+  inset: 0; /* = top/right/bottom/left: 0 → растянуть на весь viewport */
+  background: rgba(0, 0, 0, 0.5); /* затемнение фона */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* выше всего остального */
+}
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  width: min(420px, 90vw);
+}

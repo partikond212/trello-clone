@@ -1,0 +1,75 @@
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  min-width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.actionButtons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actionButtons button:first-child {
+  background: #e2e8f0;
+}
+
+.actionButtons button:last-child {
+  background: #0079bf;
+  color: white;
+}
+
+/* Добавь или замени эти правила */
+
+.modal input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #172b4d;
+  background: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  margin: 4px 0 12px;
+}
+
+.modal input[type="text"]::placeholder {
+  color: #9ca3af;
+}
+
+.modal input[type="text"]:focus {
+  outline: none;
+  border-color: #0079bf;
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}
+
+.modal input[type="text"]:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}

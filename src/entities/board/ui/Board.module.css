@@ -1,0 +1,91 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  transition:
+    box-shadow 0.2s ease,
+    margin-top 0.2s ease;
+  height: 100%;
+  min-height: 170px;
+  margin-top: 0;
+  border: 1px solid #e6e9f0;
+}
+
+.board:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  margin-top: -4px;
+}
+
+.BoardImage {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e9ecf0;
+}
+
+.BoardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.board:hover .BoardImage img {
+  transform: scale(1.03);
+}
+
+.cardContent {
+  padding: 12px 14px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #172b4d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: #6b778c;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.menuButton:hover {
+  background: #f0f2f5;
+}
+
+.cardContent p {
+  margin: 0;
+  font-size: 12px;
+  color: #6b778c;
+}

@@ -1,0 +1,19 @@
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #cccbcb;
+  color: var(--color-primary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.customAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

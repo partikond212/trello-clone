@@ -1,0 +1,29 @@
+.settingsElementBtn {
+  background: rgb(193, 199, 208);
+  padding: 3px;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 46px;
+  height: 26px;
+  border: none;
+  transition: all 0.25s ease;
+  caret-color: transparent;
+}
+.settingsElementBtn.active {
+  background: var(--color-primary);
+}
+
+.thumb.active {
+  transform: translateX(50%);
+}
+.thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+}

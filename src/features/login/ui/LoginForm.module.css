@@ -1,0 +1,80 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.loginForm h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #172b4d;
+}
+
+.loginForm > span {
+  font-size: 13px;
+  color: #5e6c84;
+  margin-bottom: 20px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.userEmailInput,
+.userPasswordInput {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.userEmailInput label,
+.userPasswordInput label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #172b4d;
+}
+
+.userEmailInput input,
+.userPasswordInput input {
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #f4f5f7;
+  font-size: 14px;
+  color: #172b4d;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.userEmailInput input::placeholder,
+.userPasswordInput input::placeholder {
+  color: #6b778c;
+}
+
+.userEmailInput input:focus,
+.userPasswordInput input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #0079bf;
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}
+
+.submitButton {
+  width: 100%;
+  height: 44px;
+  margin-top: 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}

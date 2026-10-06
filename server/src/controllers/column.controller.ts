@@ -1,6 +1,6 @@
 import { Response,Request } from "express";
 import { Column } from "../models/Column.model";
-import { truncate } from "fs/promises";
+
 
 
 
@@ -61,8 +61,8 @@ export const deleteColumn = async(req:Request,res:Response) => {
 
 export const editColumn = async(req:Request,res:Response) => {
     try {
-        const {title} = req.body
-     const column = await Column.findByIdAndUpdate(req.params.id,{title},{new:true})
+        const {title,order} = req.body
+     const column = await Column.findByIdAndUpdate(req.params.id,{title,order},{new:true})
      if(!column){
     return res.status(404).json({error:'Не удалось найти колонку'})
      }

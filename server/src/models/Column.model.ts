@@ -1,5 +1,6 @@
 import mongoose ,{Schema} from 'mongoose'
 
+
 const ColumnSchema = new Schema({
     title:{type:String,required:true},
     boardId:{type:Schema.Types.ObjectId,ref:'Board',required:true},

@@ -33,7 +33,8 @@ export const uploadImage = [
         uploadStream.on('error', reject);
       });
 
-      const fileUrl = `http://localhost:5000/api/uploads/${uploadStream.id}`;
+      const baseUrl = process.env.SERVER_BASE_URL ?? 'http://localhost:5000';
+      const fileUrl = `${baseUrl}/api/uploads/${uploadStream.id}`;
       res.json({ url: fileUrl });
     } catch (error) {
       console.error('Upload error:', error);

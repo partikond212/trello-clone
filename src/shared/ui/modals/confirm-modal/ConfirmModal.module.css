@@ -9,21 +9,18 @@
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  padding: 16px;
 }
 
 .modal {
   background: #ffffff;
   padding: 24px 28px;
-  border-radius: 8px;
+  border-radius: 16px;
   max-width: 400px;
   width: 90%;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.modal h2 {
-  margin-top: 0;
-  font-size: 18px;
-  color: #172b4d;
 }
 
 .modal p {
@@ -31,6 +28,7 @@
   color: #475569;
   font-size: 14px;
   line-height: 1.4;
+  text-align: center;
 }
 
 .actions {
@@ -40,11 +38,15 @@
 }
 
 .actions button {
-  padding: 8px 20px;
+  display: flex;
+  flex: 1 1 0px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 25px;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   transition: background 0.15s;
 }
 
@@ -64,4 +66,25 @@
 
 .confirmBtn:hover {
   background: #c0392b;
+}
+
+.trashCanBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trashCanWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ec47353b;
+  padding: 3px;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+}
+.title {
+  text-align: center;
+  margin-top: 15px;
 }

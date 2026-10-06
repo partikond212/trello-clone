@@ -5,7 +5,8 @@ export const getCards = async (req: Request, res: Response) => {
     try {
         const { columnId } = req.query
         const filter = columnId ? { columnId } : {}
-        const cards = await Card.find(filter)
+       const cards = await Card.find(filter).sort({ order: 1 })
+
         res.json(cards)
     }
     catch (e) {
@@ -13,7 +14,6 @@ export const getCards = async (req: Request, res: Response) => {
         console.error(e)
     }
 }
-
 export const getCard = async(req:Request,res:Response) => {
     try {
         const card = await Card.findById(req.params.id)
@@ -27,14 +27,13 @@ export const getCard = async(req:Request,res:Response) => {
 
 export const createCard = async(req:Request,res:Response) => {
     try {
-        const {title,description,columnId,order,notesCount,completedTaskCount } = req.body
+        const {title,description,columnId,order } = req.body
         const card = new Card({
             title,
             description,
             columnId,
             order,
-            notesCount,
-            completedTaskCount
+            
         })
         await card.save()
         res.status(201).json(card)
@@ -63,8 +62,8 @@ export const deleteCard = async(req:Request,res:Response) => {
 
 export const editCard = async(req:Request,res:Response) => {
     try {
-        const {title,description} = req.body
-        const card = await Card.findByIdAndUpdate(req.params.id,{title,description} ,{new:true})
+        const {title,description,dueDate,tags,priority,tasks,order,columnId} = req.body
+        const card = await Card.findByIdAndUpdate(req.params.id,{title,description,dueDate,tags,priority,tasks,order,columnId} ,{new:true})
         if(!card) {
             return res.status(404).json({error:'Карточка не найдена'})
         }

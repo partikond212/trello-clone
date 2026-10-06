@@ -5,16 +5,20 @@
   background: #ffffff;
   border-radius: 6px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  padding: 6px 0;
+  padding: 11px 21px;
   z-index: 20;
   min-width: 150px;
   border: 1px solid #e6e9f0;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
 }
 
 .menu button {
+  opacity: 1;
   display: block;
   width: 100%;
-  padding: 8px 16px;
+  padding: 9px 11px 9px 2px;
   background: none;
   border: none;
   text-align: left;
@@ -26,4 +30,13 @@
 
 .menu button:hover {
   background: #f0f2f5;
+}
+.menu button:last-child {
+  color: #ff0000;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(7px);
+  pointer-events: none;
 }

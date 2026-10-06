@@ -1,75 +1,47 @@
 .overlay {
   position: fixed;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background: rgba(9, 30, 66, 0.54);
   z-index: 1000;
+  transition: all 0.2s ease;
+  padding: 16px;
 }
 
 .modal {
-  background: #ffffff;
-  padding: 24px 28px;
-  border-radius: 8px;
-  min-width: 320px;
-  max-width: 90%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-}
-
-.modal h2 {
-  margin-top: 0;
-  font-size: 20px;
-  color: #172b4d;
-}
-
-.modal p {
-  color: #475569;
-  font-size: 14px;
-  margin: 8px 0 4px;
-}
-
-.modal input[type="text"] {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 440px;
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 14px;
-  margin: 4px 0 12px;
-}
-
-.modal input[type="text"]:focus {
-  outline: none;
-  border-color: #0079bf;
-  box-shadow: 0 0 0 2px rgba(0, 121, 191, 0.2);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .actionButtons {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 8px;
   margin-top: 16px;
 }
 
 .actionButtons button {
-  padding: 8px 16px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 32px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background 0.15s;
+  font-size: 12px;
+  font-weight: 750;
 }
 
 .actionButtons button:first-child {
-  background: #f1f2f4;
-  color: #172b4d;
-}
-
-.actionButtons button:first-child:hover {
-  background: #e6e9f0;
+  background: #e2e8f0;
 }
 
 .actionButtons button:last-child {
@@ -77,38 +49,78 @@
   color: white;
 }
 
-.actionButtons button:last-child:hover {
-  background: #026aa7;
+.modal h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: #172b4d;
 }
 
-.actionButtons button:last-child:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.modal label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #44546f;
 }
 
-/* Добавь или замени эти правила */
+.addTitleBlock {
+  margin-bottom: 20px;
+}
+
+.fileUpload {
+  margin-bottom: 20px;
+}
+
+.uploadCover {
+  padding-top: 16px;
+  border-top: 1px solid #e4e6ea;
+}
+
+.colorPicker {
+  margin-bottom: 16px;
+}
+
+.colorPicker :global(.react-colorful) {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.colorInput {
+  margin-bottom: 4px;
+}
+
+.colorInput input[type="text"] {
+  max-width: 100%;
+  font-family: "Menlo", "Consolas", monospace;
+}
 
 .modal input[type="text"] {
+  border-radius: 8px;
   width: 100%;
+  max-width: 90%;
+  height: 25px;
   padding: 10px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  border: 1px solid transparent;
   font-size: 14px;
   font-family: "Inter", system-ui, sans-serif;
   color: #172b4d;
-  background: #ffffff;
+  background: #f4f5f7;
   transition:
     border-color 0.2s ease,
+    background 0.2s ease,
     box-shadow 0.2s ease;
   margin: 4px 0 12px;
 }
 
 .modal input[type="text"]::placeholder {
-  color: #9ca3af;
+  color: #6b778c;
 }
 
 .modal input[type="text"]:focus {
   outline: none;
+  background: #ffffff;
   border-color: #0079bf;
   box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
 }

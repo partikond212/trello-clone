@@ -7,10 +7,12 @@ import uploadRoutes from './routes/upload.routes';
 import path from 'path';
 import cardRoutes from './routes/card.routes'
 import columnRoutes from './routes/column.routes'
+import commentRoutes from './routes/comment.routes'
+import userRoutes from './routes/user.routes'
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173' }));
 app.use(express.json());
 
 const startServer = async () => {
@@ -20,7 +22,9 @@ const startServer = async () => {
     app.use('/api/boards', boardRoutes);
     app.use('/api/columns', columnRoutes);
     app.use('/api/cards',cardRoutes)
-    app.use('/api', uploadRoutes); // ← добавь эту строку
+    app.use('/api/comments',commentRoutes)
+    app.use('/api/users',userRoutes)
+    app.use('/api', uploadRoutes);
     app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
     const PORT = process.env.PORT || 5000;

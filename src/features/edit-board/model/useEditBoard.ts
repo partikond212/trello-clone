@@ -4,7 +4,7 @@ import { editBoard } from '../../../entities/board/api/boardApi';
 const useEditBoard = () => {
     const queryClient  =  useQueryClient()
 return useMutation({
-    mutationFn:({id,image,title} : {id:string,title:string,image?:string}) => editBoard(id,title,image),
+    mutationFn:({id,title,image,color,coverState,order} : {id:string,title:string,image?:string,color?:string,coverState?:string,order:number}) => editBoard(id,title,image,color,coverState,order),
     onSuccess:() => {
         queryClient.invalidateQueries({queryKey:['boards']})
         queryClient.invalidateQueries({queryKey:['board']})

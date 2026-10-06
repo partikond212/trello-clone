@@ -1,0 +1,23 @@
+.boardPage {
+  background: #f4f5f7;
+  min-height: 100vh;
+}
+
+.boardColumns {
+  display: flex;
+  gap: 12px;
+  padding: 40px 25px;
+  height: calc(100vh - 110px);
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+/* Телефон/планшет: колонки друг под другом, скроллится вся страница */
+@media (max-width: 768px) {
+  .boardColumns {
+    flex-direction: column;
+    height: auto;
+    overflow-x: visible;
+    padding: 20px 12px;
+  }
+}

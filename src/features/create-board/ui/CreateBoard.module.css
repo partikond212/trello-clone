@@ -7,15 +7,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: rgba(9, 30, 66, 0.54);
   z-index: 1000;
+  transition: all 0.2s ease;
+  padding: 16px;
 }
 
 .modal {
   background: #fff;
   padding: 24px;
-  border-radius: 8px;
-  min-width: 320px;
+  border-radius: 16px;
+  max-width: 440px;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -27,10 +32,12 @@
 }
 
 .actionButtons button {
-  padding: 8px 16px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 32px;
   cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
 }
 
 .actionButtons button:first-child {
@@ -42,29 +49,78 @@
   color: white;
 }
 
-/* Добавь или замени эти правила */
+.modal h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: #172b4d;
+}
+
+.modal label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #44546f;
+}
+
+.addTitleBlock {
+  margin-bottom: 20px;
+}
+
+.fileUpload {
+  margin-bottom: 20px;
+}
+
+.uploadCover {
+  padding-top: 16px;
+  border-top: 1px solid #e4e6ea;
+}
+
+.colorPicker {
+  margin-bottom: 16px;
+}
+
+.colorPicker :global(.react-colorful) {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.colorInput {
+  margin-bottom: 4px;
+}
+
+.colorInput input[type="text"] {
+  max-width: 100%;
+  font-family: "Menlo", "Consolas", monospace;
+}
 
 .modal input[type="text"] {
+  border-radius: 8px;
   width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  max-width: 90%;
+  height: 35px;
+  padding: 14px;
+  border: 1px solid transparent;
   font-size: 14px;
   font-family: "Inter", system-ui, sans-serif;
   color: #172b4d;
-  background: #ffffff;
+  background: #f4f5f7;
   transition:
     border-color 0.2s ease,
+    background 0.2s ease,
     box-shadow 0.2s ease;
   margin: 4px 0 12px;
 }
 
 .modal input[type="text"]::placeholder {
-  color: #9ca3af;
+  color: #6b778c;
 }
 
 .modal input[type="text"]:focus {
   outline: none;
+  background: #ffffff;
   border-color: #0079bf;
   box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
 }

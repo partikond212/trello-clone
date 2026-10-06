@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchBoards } from "../../../entities/board/api/boardApi";
+import { useAuth } from "@/app/context/AuthContext";
 
 export type BoardType = {
     title:string,
@@ -7,10 +8,12 @@ export type BoardType = {
 }
 
 const useBoards = () => {
+const { token } = useAuth();
 return useQuery({
-    queryKey: ['boards'],
-    queryFn:fetchBoards
-})
+  queryFn: () => fetchBoards(token),
+  queryKey: ['boards'],
+  enabled:!!token,
+});
 };
 
 export default useBoards;

@@ -1,0 +1,16 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.actions .cancelBtn {
+  align-self: auto;
+  background: rgb(235, 236, 240);
+  color: var(--color-text);
+}
+
+.actions .cancelBtn:hover {
+  background: rgb(223, 225, 230);
+}

@@ -1,14 +1,14 @@
 import type { Column } from "../model/column"
+import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
 
 type ColumnResponse = {
- title: string;
+ title?: string;
  boardId: string;
  order: number;
  _id: string;
-columnId?:string,
 }
 
-const COLUMNS_API = 'http://localhost:5000/api/columns'
+const COLUMNS_API = `${API_BASE_URL}/api/columns`
 
 
 export const getColumns = async(boardId:string):Promise<Column[]> => {
@@ -28,6 +28,23 @@ return  data.map((column) => ({
 
 }
 
+export const getColumn= async(columnId:string):Promise<Column> => {
+    const res = await fetch(`${COLUMNS_API}/${columnId}`)
+    if(!res.ok) throw new Error('Не удалось получить колонки данной доски');
+
+    const data:ColumnResponse =  await  res.json()
+    return  {
+        id:data._id,
+        title:data.title,
+        order:data.order,
+        boardId:data.boardId
+    }
+
+
+    
+
+
+}
 
 export const createColumn = async(title:string,boardId:string,order:number=0):Promise<Column> => {
     const res = await fetch(`${COLUMNS_API}`,{
@@ -62,19 +79,21 @@ export const deleteColumn  = async(columnId:string):Promise<void> => {
 
 
 
-export const  editColumn = async(columnId:string,title:string) => {
+export const  editColumn = async(columnId:string,order:number,title?:string) => {
     const res = await fetch(`${COLUMNS_API}/${columnId}`,{
         method:"PATCH",
         headers: {"Content-Type":'application/json'},
         body:JSON.stringify({
-            title
+            title,
+            order
         })
     })
     if(!res.ok) throw new Error('Не удалось отредактировать колонку данной доски');
     const data:ColumnResponse = await res.json()
     return {
         title:data.title,
-        columnId:data.columnId
+        columnId:data._id,
+        order:data.order
 
     }
 }

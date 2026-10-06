@@ -1,0 +1,258 @@
+.page {
+  display: flex;
+  gap: 40px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+  font-family: "Inter", system-ui, sans-serif;
+  align-items: flex-start;
+}
+
+.inputFields {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.settingsFields {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Планшет: колонки чуть уже, но ещё рядом */
+@media (max-width: 1024px) {
+  .page {
+    gap: 24px;
+  }
+}
+
+/* Телефон/узкий планшет: настройки карточки уходят под описание */
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+    padding: 16px 16px 48px;
+  }
+  .settingsFields {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Общие подписи блоков (ОПИСАНИЕ, ЧЕК-ЛИСТ, МЕТКИ, ...) */
+.cardDescription > label,
+.cardCheckList > label,
+.cardTags > label,
+.cardPriority > label,
+.cardDeadLine > label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+/* Описание */
+.cardDescription textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 14px;
+  border: 1px solid rgb(223, 225, 230);
+  border-radius: 10px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--color-text);
+  resize: vertical;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cardDescription textarea::placeholder {
+  color: #9aa5b1;
+}
+
+.cardDescription textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}
+
+/* Чек-лист */
+.cardCheckList > label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkListThumbWrapper {
+  height: 6px;
+  border-radius: 999px;
+  background: rgb(235, 236, 240);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.checkListThumb {
+  background-color: rgba(0, 252, 0, 0.38);
+  height: 6px;
+  width: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.addCheckListEl {
+  display: flex;
+  gap: 10px;
+}
+
+.addCheckListEl input {
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgb(223, 225, 230);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--color-text);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.addCheckListEl input::placeholder {
+  color: #9aa5b1;
+}
+
+.addCheckListEl input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}
+
+.addCheckListEl button {
+  height: 40px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(235, 236, 240);
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.addCheckListEl button:hover {
+  background: rgb(223, 225, 230);
+}
+
+/* Комментарии */
+.commentsSection {
+  padding-top: 4px;
+}
+
+.sectionTitle {
+  display: block;
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.createComment {
+  margin-bottom: 20px;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Метки */
+.chooseTagsBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+/* Приоритет */
+.priorityBtns {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px;
+  gap: 12px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.082);
+}
+.priorityBtn {
+  border-radius: 999px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+}
+.priorityThumb {
+  width: 33%;
+  position: absolute;
+  top: 4;
+  left: 0;
+  height: calc(100% - 6px);
+  background: #ffffffbd;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+.priorityBtn.high {
+  color: red;
+}
+.priorityBtn.mid {
+  color: rgba(255, 166, 0, 0.342);
+}
+.priorityBtn.low {
+  color: rgba(0, 0, 255, 0.336);
+}
+.priorityBtns button {
+  border: 0;
+  background: transparent;
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+/* Срок */
+.inputCardDeadline input {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgb(223, 225, 230);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--color-text);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.inputCardDeadline input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 121, 191, 0.2);
+}

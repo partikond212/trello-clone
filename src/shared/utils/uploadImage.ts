@@ -1,10 +1,12 @@
+import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+
 export type Image = string;
 
 export const uploadImage = async (file: File): Promise<string> => {
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await fetch('http://localhost:5000/api/upload', {
+  const res = await fetch(`${API_BASE_URL}/api/upload`, {
     method: 'POST',
     body: formData,
   });

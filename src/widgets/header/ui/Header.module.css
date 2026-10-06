@@ -1,0 +1,167 @@
+.header {
+  display: flex;
+  position: sticky;
+  z-index: 10;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-primary);
+  width: 100%;
+  min-height: 45px;
+  padding: 5px;
+  left: 0;
+  top: 0;
+  gap: 8px;
+}
+.headerSearchAndLogo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  margin: 0px 20px;
+  gap: 12px;
+}
+.headerLogo {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-weight: 750;
+    margin-left: 20px;
+    font-size: 17px;
+    color: var(--color-bg-page);
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+  margin-right: 20px;
+}
+.headerSearchField {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1 1 250px;
+  border-radius: 26px;
+  padding: 6px 0px 6px 6px;
+  background-color: var(--color-primary-second);
+  .headerInput {
+    min-width: 0;
+    flex: 1 1 auto;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background-color: transparent;
+    width: 100%;
+    max-width: 250px;
+
+    border: none;
+  }
+  .headerInput::placeholder {
+    color: var(--color-surface);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .headerInput:focus {
+    outline: 0;
+    border: 0;
+  }
+  .searchSvg {
+    flex-shrink: 0;
+    border-top-right-radius: 0;
+    background-color: transparent;
+    border: none;
+    padding-right: 10px;
+  }
+}
+.headerActions {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  .addBoardBlock {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background-color: var(--color-surface);
+    border-radius: 26px;
+    transition: all 0.3s ease;
+
+    padding: 6px 14px;
+    button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--color-primary);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+  }
+  .addBoardBlock:hover {
+    background-color: var(--color-primary-hover-butt);
+  }
+}
+
+/* Планшет / небольшой ноутбук */
+@media (max-width: 1024px) {
+  .headerSearchAndLogo {
+    margin: 0 12px;
+  }
+  .headerSearchField {
+    flex: 1 1 180px;
+  }
+}
+
+/* Планшет / крупный телефон: прячем подпись логотипа, сужаем поиск */
+@media (max-width: 768px) {
+  .headerLogo span {
+    display: none;
+  }
+  .headerSearchAndLogo {
+    margin: 0 8px;
+    gap: 8px;
+  }
+  .headerSearchField {
+    flex: 1 1 120px;
+  }
+  .headerActions {
+    gap: 6px;
+    margin-right: 4px;
+  }
+}
+
+/* Телефон: только иконка у кнопки создания доски, компактные отступы */
+@media (max-width: 480px) {
+  .header {
+    padding: 6px 4px;
+  }
+  .headerSearchAndLogo {
+    margin: 0 6px;
+  }
+  .headerSearchField {
+    flex: 1 1 60px;
+    padding: 6px;
+  }
+  .headerSearchField .headerInput {
+    max-width: none;
+  }
+  .addBoardLabel {
+    display: none;
+  }
+  .addBoardBlock {
+    padding: 6px 10px;
+  }
+}
+.incomingNotifications {
+  position: relative;
+}
+.incomingNotifications button {
+  border: 0;
+  background: transparent;
+  outline: 0;
+}
+.userProfile button {
+  border: 0;
+  background: transparent;
+  outline: 0;
+}

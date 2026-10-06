@@ -1,0 +1,55 @@
+.menu {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  z-index: 100;
+  width: 216px;
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow:
+    rgba(9, 30, 66, 0.34) 0px 10px 24px -6px,
+    rgba(9, 30, 66, 0.3) 0px 0px 1px;
+  opacity: 0;
+  padding: 7px;
+  transition: 0.28s ease-in-out;
+  pointer-events: none;
+  display: flex;
+
+  flex-direction: column;
+  gap: 5px;
+  transform: translateY(-9px);
+}
+.menu button {
+  width: 100%;
+  text-align: left;
+  border: 0px;
+  background: transparent;
+  padding: 9px 11px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: rgb(23, 43, 77);
+  cursor: pointer;
+  transition: 0.28s ease-in-out;
+}
+.menu button:last-child {
+  width: 100%;
+  text-align: left;
+  border: 0px;
+  background: transparent;
+  padding: 9px 11px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: rgb(191, 38, 0);
+  cursor: pointer;
+}
+.menu button:last-child:hover {
+  background: rgba(255, 0, 0, 0.062);
+}
+.menu button:hover {
+  background-color: rgba(209, 209, 209, 0.685);
+}
+.menu.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(9px);
+}

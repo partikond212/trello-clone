@@ -1,5 +1,6 @@
 import {type Card} from "../model/card"
-const CARDS_API = 'http://localhost:5000/api/cards'
+import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+const CARDS_API = `${API_BASE_URL}/api/cards`
 
 type CardResponse ={ 
     _id:string,
@@ -9,6 +10,12 @@ type CardResponse ={
     order:number,
     notesCount?:number,
     completedTaskCount?:number,
+    priority?:Card['priority'],
+    tags?:string[],
+    tasks?:Card['tasks'],
+    dueDate?:Card['dueDate'],
+
+    
 }
 
 export const fetchCards= async (columnId:string):Promise<Card[]> => {
@@ -27,6 +34,10 @@ export const fetchCards= async (columnId:string):Promise<Card[]> => {
             order:card.order,
             notesCount:card.notesCount,
             completedTaskCount:card.completedTaskCount,
+            priority:card.priority,
+            tags:card.tags,
+            tasks:card.tasks,
+            dueDate:card.dueDate,
         }
     ))
 }
@@ -49,8 +60,8 @@ export const createCard = async (dto: CreateCardDTO): Promise<Card> => {
         description:data.description,
         columnId:data.columnId,
         order:data.order,
-        notesCount:data.notesCount,
         completedTaskCount:data.completedTaskCount,
+
 
     }
 }
@@ -65,8 +76,11 @@ export const getCard = async (id:string):Promise<Card> => {
         description:data.description || '',
         columnId:data.columnId,
         order:data.order || 0,
-        notesCount:data.notesCount || 0,
         completedTaskCount:data.completedTaskCount || 0,
+        priority:data.priority,
+        tags:data.tags,
+        tasks:data.tasks,
+        dueDate:data.dueDate
     }
 
 }
@@ -80,14 +94,20 @@ export const deleteCard = async (cardId:string):Promise<void> => {
 }
 
 
+type editCardVars = {card:Card,title?:string,tags?:Card['tags'],priority?:Card['priority'],dueDate?:Card['dueDate'],tasks?:Card['tasks'],description?:string,columnId?: string, order?: number}
 
-export const editCard = async (card:Card,title:string,description?:string):Promise<Card> => {
+export const editCard = async ({card,title,tags,priority,dueDate,tasks,description,order,columnId}:editCardVars ):Promise<Card> => {
     const res = await fetch(`${CARDS_API}/${card.id}`,{
         method:"PATCH",
         body:JSON.stringify({
             title,
-            description
-            
+            description,
+            tags,
+            priority,
+            dueDate,
+            tasks,
+            order,
+            columnId
         }),
         headers:{'Content-Type':'application/json'}
     })
@@ -100,8 +120,11 @@ export const editCard = async (card:Card,title:string,description?:string):Promi
         description:data.description || '',
         columnId:data.columnId,
         order:data.order || 0,
-        notesCount:data.notesCount || 0,
         completedTaskCount:data.completedTaskCount || 0,
+        tags:data.tags,
+        tasks:data.tasks,
+        priority:data.priority,
+        dueDate:data.dueDate,
     }
 
 }

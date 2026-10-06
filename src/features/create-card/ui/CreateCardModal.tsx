@@ -1,8 +1,8 @@
 import { useState, type FC } from "react";
 import useCreateCard from "../model/useCreateCard";
 
-import styles from "./CreateCard.module.css";
 import type { Column } from "@/entities/column/model/column";
+import styles from "./CreateCard.module.css";
 
 interface ICreateCardModalProps {
   column: Column;
@@ -19,7 +19,6 @@ const CreateCardModal: FC<ICreateCardModalProps> = ({
   onSuccess,
 }) => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const { mutate, isPending } = useCreateCard(column.id);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,11 +26,10 @@ const CreateCardModal: FC<ICreateCardModalProps> = ({
     const trimmed = title.trim();
     if (!trimmed || trimmed.length === 0) return;
     mutate(
-      { title: trimmed, description },
+      { title: trimmed },
       {
         onSuccess: () => {
           setTitle("");
-          setDescription("");
           onClose();
           if (onSuccess) onSuccess();
         },
@@ -41,42 +39,35 @@ const CreateCardModal: FC<ICreateCardModalProps> = ({
       },
     );
   };
-  // Если модалка закрыта — не рендерим её вообще
-  if (!isModalOpen) return null;
-  else {
-    return (
-      <div className={styles.overlay}>
-        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-          <h2>Создать карточку</h2>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Введите название карточки"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-            />
-            <input
-              type="text"
-              placeholder="Введите описание карточки"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              autoFocus
-            />
 
-            <div className={styles.actionButtons}>
-              <button type="button" onClick={onClose}>
-                Отмена
-              </button>
-              <button type="submit" disabled={isPending}>
-                {isPending ? "Создание..." : "Создать"}
-              </button>
-            </div>
-          </form>
+  return (
+    <div className={`${styles.modal} ${isModalOpen ? styles.active : ""}`}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <textarea
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Введите заголовок карточки…"
+            className={styles.inputCardTitle}
+          />
         </div>
-      </div>
-    );
-  }
+
+        <div className={styles.actionButtons}>
+          <button
+            className={styles.addCardBtn}
+            type="submit"
+            disabled={isPending}
+          >
+            {isPending ? "Добавляем..." : "Добавить"}
+          </button>
+          <button className={styles.rejectBtn} type="button" onClick={onClose}>
+            Отмена
+          </button>
+          <span className={styles.advice}>Enter - добавить</span>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default CreateCardModal;

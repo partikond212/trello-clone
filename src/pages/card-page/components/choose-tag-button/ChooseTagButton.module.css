@@ -1,0 +1,52 @@
+.chooseTagBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(128, 128, 128, 0.226);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.chooseTagBtn.isClicked {
+  border: 2px solid color-mix(in srgb, var(--tag-color) 60%, white);
+  background-color: color-mix(in srgb, var(--tag-color) 10%, white);
+}
+.red {
+  background: #ff5c5c;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.green {
+  background: #4caf50;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.purple {
+  background: rgba(121, 1, 121, 0.568);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.orange {
+  background: #ff9152;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.blue {
+  background: #0079bf8f;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.darkblue {
+  background: #0079bf;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}

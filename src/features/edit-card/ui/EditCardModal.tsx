@@ -1,8 +1,10 @@
 import React, { useState, type FC } from "react";
 import Modal from "../../../shared/ui/modals/Modal";
 import type { Card } from "@/entities/card/model/card";
+import { createPortal } from "react-dom";
 import useEditCard from "@/features/edit-card/model/useEditCard";
 import { useNotification } from "@/app/context/NotificationContext";
+import styles from "./EditCardModal.module.css";
 
 type EditCardModalPropsType = {
   card: Card;
@@ -32,7 +34,7 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
       },
     );
   };
-  return (
+  return createPortal(
     <Modal title="Редактировать карточку" isOpen={isOpen}>
       <form onSubmit={handleSubmit}>
         <input
@@ -48,8 +50,12 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
           placeholder="Описание карточки"
           onChange={(e) => setDescription(e.target.value)}
         />
-        <div>
-          <button type="button" onClick={closeModal}>
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.cancelBtn}
+            onClick={closeModal}
+          >
             Отмена
           </button>
           <button type="submit" disabled={isEditing}>
@@ -57,7 +63,8 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
           </button>
         </div>
       </form>
-    </Modal>
+    </Modal>,
+    document.body,
   );
 };
 

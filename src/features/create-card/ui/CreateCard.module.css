@@ -1,15 +1,80 @@
-.overlay {
-  position: fixed; /* не absolute — почему? думай про скролл и родителя */
-  inset: 0; /* = top/right/bottom/left: 0 → растянуть на весь viewport */
-  background: rgba(0, 0, 0, 0.5); /* затемнение фона */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* выше всего остального */
-}
 .modal {
-  background: #fff;
-  border-radius: 8px;
-  padding: 24px;
-  width: min(420px, 90vw);
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.7s ease,
+    opacity 0.6s ease;
+}
+.modal.active {
+  max-height: 300px; /* с запасом больше реальной высоты формы */
+  opacity: 1;
+}
+
+.inputCardTitle {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+  border: 0px;
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(23, 43, 77);
+  box-shadow:
+    rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgb(0, 121, 191) 0px 0px 0px 2px inset;
+  outline: none;
+  transition: 0.28s ease;
+  margin-bottom: 25px;
+}
+
+.inputCardTitle:focus {
+  box-shadow:
+    rgba(9, 30, 66, 0.25) 1px 1px 1px,
+    rgb(0, 121, 191) 0px 0px 2px 3px inset;
+}
+.addCardBtn {
+  height: 34px;
+  padding: 0px 16px;
+  border: 0px;
+  border-radius: 999px;
+  background: rgb(0, 121, 191);
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+.addCardBtn:hover {
+  background: rgb(1, 135, 212);
+}
+
+.rejectBtn {
+  height: 34px;
+  padding: 0px 12px;
+  border: 0px;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(66, 82, 110);
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.34s ease;
+}
+
+.rejectBtn:hover {
+  background: #aaaaaa42;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.advice {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgb(94, 108, 132);
 }

@@ -1,0 +1,39 @@
+.item {
+  list-style: none;
+}
+
+.item + .item {
+  margin-top: 6px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.label:hover {
+  background: rgb(242, 243, 245);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.text {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.text.done {
+  color: var(--color-text-secondary);
+  text-decoration: line-through;
+}

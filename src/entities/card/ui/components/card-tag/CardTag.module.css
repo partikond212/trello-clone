@@ -1,0 +1,12 @@
+.cardTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tag-color);
+  background: color-mix(in srgb, var(--tag-color) 15%, white);
+  border: 1px solid color-mix(in srgb, var(--tag-color) 35%, white);
+}

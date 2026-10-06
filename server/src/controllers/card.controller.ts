@@ -4,7 +4,7 @@ import { Card } from '../models/Card.model'
 export const getCards = async (req: Request, res: Response) => {
     try {
         const { columnId } = req.query
-        const filter = columnId ? { columnId } : {}
+        const filter = columnId ? { columnId: columnId as string } : {}
        const cards = await Card.find(filter).sort({ order: 1 })
 
         res.json(cards)

@@ -7,7 +7,7 @@ import { Column } from "../models/Column.model";
 export const getColumns = async (req: Request, res: Response) => {
   try {
     const { boardId } = req.query;
-    const filter = boardId ? { boardId } : {};
+    const filter = boardId ? { boardId: boardId as string } : {};
     const columns = await Column.find(filter).sort({ order: 1 });
     res.json(columns);
   } catch (error) {

@@ -5,7 +5,7 @@ import { Comment } from "../models/Comment.model";
 export const getComments = async (req: Request, res: Response) => {
   try {
     const { cardId } = req.query;
-    const filter = cardId ? { cardId } : {};
+    const filter = cardId ? { cardId: cardId as string } : {};
     const comments = await Comment.find(filter).sort({ createdAt: -1 });
     res.json(comments);
   } catch (error) {

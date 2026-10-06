@@ -22,7 +22,7 @@ export const uploadImage = [
       const filename = `${Date.now()}-${req.file.originalname}`;
 
       const uploadStream = bucket.openUploadStream(filename, {
-        contentType: req.file.mimetype,
+        metadata: { contentType: req.file.mimetype },
       });
 
       uploadStream.write(req.file.buffer);
@@ -51,7 +51,7 @@ export const getImage = async (req: Request, res: Response) => {
     }
 
     const bucket = new GridFSBucket(db, { bucketName: 'uploads' });
-    const fileId = new mongoose.Types.ObjectId(req.params.id);
+    const fileId = new mongoose.Types.ObjectId(req.params.id as string);
 
     const downloadStream = bucket.openDownloadStream(fileId);
 

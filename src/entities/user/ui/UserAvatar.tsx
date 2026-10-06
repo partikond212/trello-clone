@@ -9,28 +9,27 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, className }) => {
   if (!user) {
     return null;
   }
-  let initials = user.name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
-  if (user.name.split(" ").length < 2) {
-    initials = user.name.trim().slice(0, 2).toUpperCase();
-  } else if (user.avatar) {
+  const words = user.name.trim().split(/\s+/);
+  const initials =
+    words.length < 2
+      ? user.name.trim().slice(0, 2).toUpperCase()
+      : words
+          .slice(0, 2)
+          .map((w) => w[0])
+          .join("")
+          .toUpperCase();
+
+  if (user.avatar) {
     return (
       <div>
         <img src={user.avatar} className={styles.customAvatar} alt="" />
       </div>
     );
-  } else {
-    return (
-      <div className={`${styles.avatar} ${className ?? className}`}>
-        {initials}
-      </div>
-    );
   }
+
+  return (
+    <div className={`${styles.avatar} ${className ?? ""}`}>{initials}</div>
+  );
 };
 
 export default UserAvatar;

@@ -1,6 +1,7 @@
 import React, { useState, type FC } from "react";
 import useJoinBoard from "../model/useJoinBoard";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import { useNavigate } from "react-router-dom";
 import styles from "./JoinBoardModal.module.css";
 
@@ -20,13 +21,29 @@ const JoinBoardModal: FC<JoinBoardModalProps> = ({
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const inviteToken = new URL(link).pathname.split("/").pop();
-    joinBoard(inviteToken!, {
+    let inviteToken: string | undefined;
+    try {
+      inviteToken = new URL(link).pathname.split("/").pop();
+    } catch {
+      showNotification("Это не похоже на ссылку-приглашение", "error");
+      return;
+    }
+    if (!inviteToken) {
+      showNotification("Вставьте ссылку-приглашение", "error");
+      return;
+    }
+    joinBoard(inviteToken, {
       onSuccess: (board) => {
         setTimeout(() => {
           navigate(`/boards/${board._id}`);
           showNotification("Вы успешно присоединились к доске!", "success");
         }, 500);
+      },
+      onError: (error) => {
+        showNotification(
+          getErrorMessage(error, "Не удалось присоединиться к доске"),
+          "error",
+        );
       },
     });
   };

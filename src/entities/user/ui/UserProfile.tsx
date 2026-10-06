@@ -8,6 +8,7 @@ import { useNotification } from "@/app/context/NotificationContext";
 import useEditUser from "@/features/edit-user/model/useEditUser";
 import styles from "./UserProfile.module.css";
 import { useNavigate } from "react-router-dom";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 const UserProfile: FC = () => {
   const { user, logout } = useAuth();
   const { mutate } = useEditUser();
@@ -24,8 +25,11 @@ const UserProfile: FC = () => {
           showNotification("Вы успешно изменили пользователя", "success");
           setHasChanges(false);
         },
-        onError: () => {
-          showNotification("Вы не смогли изменить пользователя", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось изменить пользователя"),
+            "error",
+          );
         },
       },
     );
@@ -46,8 +50,11 @@ const UserProfile: FC = () => {
           showNotification("Вы успешно изменили аватарку", "success");
           setHasChanges(false);
         },
-        onError: () => {
-          showNotification("Вы не смогли изменить аватарку", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось изменить аватарку"),
+            "error",
+          );
         },
       },
     );

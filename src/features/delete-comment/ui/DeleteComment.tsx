@@ -2,6 +2,7 @@ import type { CommentT } from "@/entities/comment/model/Comment";
 import { type FC } from "react";
 import useDeleteComment from "../model/useDeleteComment";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 type DeleteCommentProps = {
   comment: CommentT;
 };
@@ -13,8 +14,11 @@ const DeleteComment: FC<DeleteCommentProps> = ({ comment }) => {
       onSuccess: () => {
         showNotification("Вы успешно удалили коммент!", "success");
       },
-      onError: () => {
-        showNotification("Вы не удалили коммент ", "error");
+      onError: (error) => {
+        showNotification(
+          getErrorMessage(error, "Не удалось удалить комментарий"),
+          "error",
+        );
       },
     });
   };

@@ -3,6 +3,7 @@ import useLogin from "../model/useLogin";
 import styles from "./LoginForm.module.css";
 import { useNotification } from "@/app/context/NotificationContext";
 import { useNavigate } from "react-router-dom";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 
 const LoginForm = () => {
   //TODO:Можно было бы сделать так чтобы формы плавно между собой переключались
@@ -22,8 +23,11 @@ const LoginForm = () => {
             navigate("/user/me");
           }, 2000);
         },
-        onError: () => {
-          showNotification("Вы не смогли войти в аккаунт", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось войти в аккаунт"),
+            "error",
+          );
         },
       },
     );

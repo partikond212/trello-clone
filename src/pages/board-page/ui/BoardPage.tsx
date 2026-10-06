@@ -29,6 +29,7 @@ import useMoveCard from "@/features/move-card/model/useMoveCard";
 import useMediaQuery from "@/shared/hooks/useMediaQuery";
 import useEditColumn from "@/features/edit-column/model/useEditColumn";
 import type { Card } from "@/entities/card/model/card";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import styles from "./BoardPage.module.css";
 
 const BoardPage: FC = () => {
@@ -93,9 +94,9 @@ const BoardPage: FC = () => {
           const link = `${window.location.origin}/boards/join/${data}`;
           navigator.clipboard.writeText(link);
         },
-        onError: () => {
+        onError: (error) => {
           showNotification(
-            "Вы не скопировали ссылку на приглашение пользователя",
+            getErrorMessage(error, "Не удалось создать ссылку-приглашение"),
             "error",
           );
         },
@@ -111,8 +112,11 @@ const BoardPage: FC = () => {
         showNotification("Вы успешно удалили колонку", "success");
         onClose();
       },
-      onError: () => {
-        showNotification("Колонку не удалось удалить", "error");
+      onError: (error) => {
+        showNotification(
+          getErrorMessage(error, "Не удалось удалить колонку"),
+          "error",
+        );
       },
     });
   };
@@ -131,8 +135,11 @@ const BoardPage: FC = () => {
     showNotification("Вы отказались редактировать колонку", "info");
   };
 
-  const editErrorHandler = () => {
-    showNotification("У вас не получилось отредактировать колонку", "error");
+  const editErrorHandler = (error: Error) => {
+    showNotification(
+      getErrorMessage(error, "Не удалось отредактировать колонку"),
+      "error",
+    );
     closeEdit();
   };
   const handleEdit = (column: ColumnEntity) => {
@@ -184,6 +191,10 @@ const BoardPage: FC = () => {
             onError: (error) => {
               console.error("MOVE COLUMN FAILED", error);
               clearLocalColumns();
+              showNotification(
+                getErrorMessage(error, "Не удалось сохранить порядок колонок"),
+                "error",
+              );
               queryClient.invalidateQueries({
                 queryKey: ["columns", board.id],
               });
@@ -252,7 +263,10 @@ const BoardPage: FC = () => {
         clearLocalCards();
         if (error) {
           console.error("MOVE CARD FAILED", error);
-          showNotification("Не удалось переместить карточку", "error");
+          showNotification(
+            getErrorMessage(error, "Не удалось переместить карточку"),
+            "error",
+          );
         }
         queryClient.invalidateQueries({
           queryKey: ["cards", source.droppableId],
@@ -348,8 +362,11 @@ const BoardPage: FC = () => {
           </div>
         </div>
         <CreateColumnModal
-          onError={() =>
-            showNotification("Не удалось создать колонку", "error")
+          onError={(error) =>
+            showNotification(
+              getErrorMessage(error, "Не удалось создать колонку"),
+              "error",
+            )
           }
           onSuccess={() =>
             showNotification("Колонка успешно создана", "success")

@@ -1,5 +1,6 @@
 import type { User } from "../model/User"
 import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+import { throwApiError } from "@/shared/utils/apiError"
 
 const USER_API=`${API_BASE_URL}/api/users`
 
@@ -19,9 +20,9 @@ export const registUser = async(name:string,email:string,password:string,avatar?
         })
     })
     if(!res.ok) {
-        throw new Error('Не удалось создать пользователя')
+        await throwApiError(res, 'Не удалось зарегистрировать пользователя')
     }
-    const data:AuthResponse = await res.json() 
+    const data:AuthResponse = await res.json()
     return data
 }
 
@@ -33,9 +34,9 @@ export const loginUser = async(email:string,password:string,avatar?:string) =>  
 })
 
     if(!res.ok) {
-        throw new Error('Не удалось создать пользователя')
+        await throwApiError(res, 'Не удалось войти')
     }
-    const data:AuthResponse = await res.json() 
+    const data:AuthResponse = await res.json()
     return data
 }
 
@@ -47,9 +48,9 @@ export const getMe = async(token:AuthResponse['token']) =>  {
 })
 
     if(!res.ok) {
-        throw new Error('Не удалось найти данного пользователя')
+        await throwApiError(res, 'Не удалось найти данного пользователя')
     }
-    const data:User = await res.json() 
+    const data:User = await res.json()
     return data
 }
 
@@ -65,9 +66,9 @@ export const editUserInfo = async(token:AuthResponse['token'],avatar:User['avata
 })
 
     if(!res.ok) {
-        throw new Error('Не удалось найти данного пользователя')
+        await throwApiError(res, 'Не удалось обновить профиль')
     }
-    const data:User = await res.json() 
+    const data:User = await res.json()
     return data
 }
 

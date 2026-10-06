@@ -7,6 +7,7 @@ import ColumnMenu from "./components/ColumnMenu";
 import CreateCardModal from "@/features/create-card/ui/CreateCardModal";
 import useModal from "@/shared/hooks/useModal";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import styles from "./Column.module.css";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { createPortal } from "react-dom";
@@ -168,7 +169,12 @@ const Column: FC<ColumnProps> = ({
         onClose={closeCreateCard}
         isModalOpen={isCreateCardOpen}
         onSuccess={() => showNotification("Вы создали карточку", "success")}
-        onError={() => showNotification("Вы не создали карточку", "error")}
+        onError={(error) =>
+          showNotification(
+            getErrorMessage(error, "Не удалось создать карточку"),
+            "error",
+          )
+        }
       />
     </div>
   );

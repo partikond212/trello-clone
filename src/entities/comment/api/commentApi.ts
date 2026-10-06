@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+import { throwApiError } from "@/shared/utils/apiError"
 
 const COMMENTS_API = `${API_BASE_URL}/api/comments`
 type CommentResponse  = {
@@ -9,9 +10,9 @@ type CommentResponse  = {
 }
 export const getComments = async(cardId:string) => {
      const res = await fetch(`${COMMENTS_API}?cardId=${cardId}`)
-    if(!res.ok) throw new Error('Не удалось найти комментарии этой карточки')
+    if(!res.ok) await throwApiError(res, 'Не удалось найти комментарии этой карточки')
 
-    const comments:CommentResponse[] = await res.json() 
+    const comments:CommentResponse[] = await res.json()
 
     return comments.map((comment) => ({
         text:comment.text,
@@ -33,7 +34,7 @@ export const createComment = async(text:string,cardId:string) => {
 
     })
      })
-    if(!res.ok) throw new Error('Не удалось создать комментарий для этой карточки')
+    if(!res.ok) await throwApiError(res, 'Не удалось создать комментарий')
 
     const comment:CommentResponse = await res.json() 
 
@@ -51,8 +52,8 @@ export const deleteComment = async(commentId:string) => {
         method:'DELETE',
 
     })
-     
-    if(!res.ok) throw new Error('Не удалось найти комментарии этой карточки')
+
+    if(!res.ok) await throwApiError(res, 'Не удалось удалить комментарий')
 }
 
 
@@ -67,8 +68,8 @@ export const editComment = async(text:string,commentId:string) => {
 
     })
 
-     
-    if(!res.ok) throw new Error('Не удалось найти комментарии этой карточки')
+
+    if(!res.ok) await throwApiError(res, 'Не удалось отредактировать комментарий')
 
         const data:CommentResponse = await res.json()
 

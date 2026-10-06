@@ -5,6 +5,7 @@ import EditCardModal from "@/features/edit-card/ui/EditCardModal";
 import useModal from "@/shared/hooks/useModal";
 import useDeleteCard from "@/features/delete-card/model/useDeleteCard";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import { useNavigate } from "react-router-dom";
 
 import CardTags from "./components/card-tags/CardTags";
@@ -48,7 +49,11 @@ const Card: FC<ICardProps> = ({ card }) => {
           closeConfirm();
           showNotification("Карточка удалена", "success");
         },
-        onError: () => showNotification("Не удалось удалить карточку", "error"),
+        onError: (error) =>
+          showNotification(
+            getErrorMessage(error, "Не удалось удалить карточку"),
+            "error",
+          ),
       },
     );
   };

@@ -1,5 +1,6 @@
 import type { Column } from "../model/column"
 import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+import { throwApiError } from "@/shared/utils/apiError"
 
 type ColumnResponse = {
  title?: string;
@@ -13,7 +14,7 @@ const COLUMNS_API = `${API_BASE_URL}/api/columns`
 
 export const getColumns = async(boardId:string):Promise<Column[]> => {
     const res = await fetch(`${COLUMNS_API}?boardId=${boardId}`)
-    if(!res.ok) throw new Error('Не удалось получить колонки данной доски');
+    if(!res.ok) await throwApiError(res, 'Не удалось получить колонки данной доски');
 
     const data:ColumnResponse[] =  await  res.json()
 return  data.map((column) => ({
@@ -30,7 +31,7 @@ return  data.map((column) => ({
 
 export const getColumn= async(columnId:string):Promise<Column> => {
     const res = await fetch(`${COLUMNS_API}/${columnId}`)
-    if(!res.ok) throw new Error('Не удалось получить колонки данной доски');
+    if(!res.ok) await throwApiError(res, 'Не удалось получить колонку');
 
     const data:ColumnResponse =  await  res.json()
     return  {
@@ -57,7 +58,7 @@ export const createColumn = async(title:string,boardId:string,order:number=0):Pr
         })
 
     })
-    if(!res.ok) throw new Error('Не удалось получить колонки данной доски');
+    if(!res.ok) await throwApiError(res, 'Не удалось создать колонку');
 
     const data:ColumnResponse =  await  res.json()
 return  {
@@ -74,7 +75,7 @@ export const deleteColumn  = async(columnId:string):Promise<void> => {
     const res = await fetch(`${COLUMNS_API}/${columnId}`,{
         method:"DELETE"
     })
-      if(!res.ok) throw new Error('Не удалось удалить колонку данной доски');
+      if(!res.ok) await throwApiError(res, 'Не удалось удалить колонку');
 }
 
 
@@ -88,7 +89,7 @@ export const  editColumn = async(columnId:string,order?:number,title?:string) =>
             order
         })
     })
-    if(!res.ok) throw new Error('Не удалось отредактировать колонку данной доски');
+    if(!res.ok) await throwApiError(res, 'Не удалось отредактировать колонку');
     const data:ColumnResponse = await res.json()
     return {
         title:data.title,

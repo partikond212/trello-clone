@@ -40,18 +40,19 @@
   align-items: center;
   min-width: 0;
   flex: 1 1 250px;
+  max-width: 320px;
   border-radius: 26px;
-  padding: 6px 0px 6px 6px;
+  padding: 0px 4px;
   background-color: var(--color-primary-second);
   .headerInput {
     min-width: 0;
-    flex: 1 1 auto;
+    flex: 1 1 250px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     background-color: transparent;
     width: 100%;
     max-width: 250px;
-
+    padding: 6px 0px 6px 6px;
     border: none;
   }
   .headerInput::placeholder {

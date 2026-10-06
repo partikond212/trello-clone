@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import type { BoardT } from "@/pages/board-page/model/useBoard";
 import styles from "./BoardsPage.module.css";
 import JoinBoardModal from "@/features/join-board/ui/JoinBoardModal";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 const BoardsPage: FC = () => {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const {
@@ -51,7 +52,7 @@ const BoardsPage: FC = () => {
         showNotification("Доска удалена", "success");
       },
       onError: (e) => {
-        showNotification(`Ошибка: ${e.message}`, "error");
+        showNotification(getErrorMessage(e, "Не удалось удалить доску"), "error");
       },
     });
   };
@@ -74,7 +75,7 @@ const BoardsPage: FC = () => {
     return <span>Загрузка...</span>;
   }
   if (error) {
-    showNotification(`${error.message}`, "error");
+    showNotification(getErrorMessage(error, "Не удалось загрузить доски"), "error");
   }
   return (
     <div className={styles.BoardsPage}>
@@ -128,7 +129,10 @@ const BoardsPage: FC = () => {
             showNotification("Доска успешно создана!", "success")
           }
           onError={(error) =>
-            showNotification(`Ошибка:${error.message}`, "error")
+            showNotification(
+              getErrorMessage(error, "Не удалось создать доску"),
+              "error",
+            )
           }
           isModalOpen={isCreateOpen}
           onClose={closeCreate}
@@ -136,8 +140,11 @@ const BoardsPage: FC = () => {
         {editingBoard && (
           <EditBoardModal
             onSuccess={() => showNotification("Доска изменена", "success")}
-            onError={() =>
-              showNotification("Не удалось отредактировать доску ", "error")
+            onError={(error) =>
+              showNotification(
+                getErrorMessage(error, "Не удалось отредактировать доску"),
+                "error",
+              )
             }
             isModalOpen={isEditOpen}
             onClose={closeEdit}

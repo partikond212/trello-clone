@@ -3,12 +3,13 @@ import styles from "./RegisterForm.module.css";
 import useRegister from "../model/useRegister";
 import { useNotification } from "@/app/context/NotificationContext";
 import { useNavigate } from "react-router-dom";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { mutate: registUser, error } = useRegister();
+  const { mutate: registUser } = useRegister();
   const { showNotification } = useNotification();
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,8 +23,11 @@ const RegisterForm = () => {
             navigate("/user/me");
           }, 2500);
         },
-        onError: () => {
-          showNotification(`${error}`, "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось зарегистрировать аккаунт"),
+            "error",
+          );
         },
       },
     );

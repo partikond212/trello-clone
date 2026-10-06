@@ -4,6 +4,7 @@ import styles from "./Comment.module.css";
 import DeleteComment from "@/features/delete-comment/ui/DeleteComment";
 import useEditComment from "@/features/edit-comment/model/useEditComment";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 type CommentTProps = {
   comment: CommentT;
 };
@@ -23,8 +24,11 @@ const Comment: FC<CommentTProps> = ({ comment }) => {
           setIsEditing(false);
           setInnerText(text);
         },
-        onError: () => {
-          showNotification("Вы не обновили коммент", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось обновить комментарий"),
+            "error",
+          );
         },
       },
     );

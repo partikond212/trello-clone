@@ -12,6 +12,7 @@ import useModal from "@/shared/hooks/useModal";
 import ConfirmModal from "@/shared/ui/modals/confirm-modal/ConfirmModal";
 import useDeleteCard from "@/features/delete-card/model/useDeleteCard";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import ChooseTagButton from "./components/choose-tag-button/ChooseTagButton";
 import { chooseTagButtons } from "@/shared/constants/tags";
 import CheckList from "./components/check-list/CheckList";
@@ -70,8 +71,11 @@ const CardPage: FC = () => {
         onSuccess: () => {
           showNotification("Вы сохранили карточку", "success");
         },
-        onError: () => {
-          showNotification("Вы не сохранили карточку", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось сохранить карточку"),
+            "error",
+          );
         },
       },
     );
@@ -110,9 +114,12 @@ const CardPage: FC = () => {
             navigate(`/boards/${board.id}`);
           }, 1000);
         },
-        onError: () => {
+        onError: (error) => {
           closeDeleteCardModal();
-          showNotification("Вы не смогли удалить карточку", "error");
+          showNotification(
+            getErrorMessage(error, "Не удалось удалить карточку"),
+            "error",
+          );
         },
       },
     );

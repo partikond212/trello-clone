@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+import { throwApiError } from "@/shared/utils/apiError"
 
 export type Image = string;
 
@@ -11,7 +12,7 @@ export const uploadImage = async (file: File): Promise<string> => {
     body: formData,
   });
 
-  if (!res.ok) throw new Error('Ошибка загрузки');
+  if (!res.ok) await throwApiError(res, 'Не удалось загрузить изображение');
   const data = await res.json();
   return data.url;
 };

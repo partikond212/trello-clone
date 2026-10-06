@@ -6,6 +6,7 @@ import { useAuth } from "@/app/context/AuthContext";
 import UserAvatar from "@/entities/user/ui/UserAvatar";
 import CreateBoardModal from "@/features/create-board/ui/CreateBoardModal";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import styles from "./Header.module.css";
 const Header: FC = () => {
   const { isModalOpen, setIsModalOpen } = useModal();
@@ -130,7 +131,10 @@ const Header: FC = () => {
       <CreateBoardModal
         onSuccess={() => showNotification("Доска успешно создана!", "success")}
         onError={(error) =>
-          showNotification(`Ошибка:${error.message}`, "error")
+          showNotification(
+            getErrorMessage(error, "Не удалось создать доску"),
+            "error",
+          )
         }
         isModalOpen={isCreateOpen}
         onClose={closeCreate}

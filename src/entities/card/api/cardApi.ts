@@ -1,5 +1,6 @@
 import {type Card} from "../model/card"
 import { API_BASE_URL } from "@/shared/config/apiBaseUrl"
+import { throwApiError } from "@/shared/utils/apiError"
 const CARDS_API = `${API_BASE_URL}/api/cards`
 
 type CardResponse ={ 
@@ -21,7 +22,7 @@ type CardResponse ={
 export const fetchCards= async (columnId:string):Promise<Card[]> => {
         const res = await fetch(`${CARDS_API}?columnId=${columnId}`)
 
-        if(!res.ok) throw new Error('Не удалось получить список карточек данной колонки')
+        if(!res.ok) await throwApiError(res, 'Не удалось получить список карточек данной колонки')
 
             const data:CardResponse[]  = await res.json()
         
@@ -51,7 +52,7 @@ export const createCard = async (dto: CreateCardDTO): Promise<Card> => {
     body: JSON.stringify(dto),
   });
 
-    if(!res.ok)  throw new Error('Не удалось создать карточку')
+    if(!res.ok)  await throwApiError(res, 'Не удалось создать карточку')
     const data:CardResponse  = await res.json()
 
     return {
@@ -67,7 +68,7 @@ export const createCard = async (dto: CreateCardDTO): Promise<Card> => {
 }
 export const getCard = async (id:string):Promise<Card> => {
     const res = await fetch(`${CARDS_API}/${id}`)
-    if(!res.ok)  throw new Error('Не удалось найти карточку')
+    if(!res.ok)  await throwApiError(res, 'Не удалось найти карточку')
     const data:CardResponse  = await res.json()
 
     return {
@@ -88,7 +89,7 @@ export const getCard = async (id:string):Promise<Card> => {
 
 export const deleteCard = async (cardId:string):Promise<void> => {
     const res = await fetch(`${CARDS_API}/${cardId}`,{method:"DELETE"})
-    if(!res.ok )throw new Error('Не удалось удалить карточку данной колонки')
+    if(!res.ok ) await throwApiError(res, 'Не удалось удалить карточку')
 
 
 }
@@ -111,7 +112,7 @@ export const editCard = async ({card,title,tags,priority,dueDate,tasks,descripti
         }),
         headers:{'Content-Type':'application/json'}
     })
-    if(!res.ok)  throw new Error('Не удалось найти карточку')
+    if(!res.ok)  await throwApiError(res, 'Не удалось сохранить изменения карточки')
     const data:CardResponse  = await res.json()
 
     return {

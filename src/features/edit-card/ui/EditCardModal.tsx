@@ -4,6 +4,7 @@ import type { Card } from "@/entities/card/model/card";
 import { createPortal } from "react-dom";
 import useEditCard from "@/features/edit-card/model/useEditCard";
 import { useNotification } from "@/app/context/NotificationContext";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 import styles from "./EditCardModal.module.css";
 
 type EditCardModalPropsType = {
@@ -30,7 +31,11 @@ const EditCardModal: FC<EditCardModalPropsType> = ({
           closeModal();
           showNotification("Карточка обновлена", "success");
         },
-        onError: () => showNotification("Не удалось обновить", "error"),
+        onError: (error) =>
+          showNotification(
+            getErrorMessage(error, "Не удалось обновить карточку"),
+            "error",
+          ),
       },
     );
   };

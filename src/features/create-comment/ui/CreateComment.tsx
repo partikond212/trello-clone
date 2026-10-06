@@ -5,6 +5,7 @@ import { useNotification } from "@/app/context/NotificationContext";
 import styles from "./CreateComment.module.css";
 import { useAuth } from "@/app/context/AuthContext";
 import UserAvatar from "@/entities/user/ui/UserAvatar";
+import { getErrorMessage } from "@/shared/utils/getErrorMessage";
 type CreateCommentType = {
   card: Card;
 };
@@ -22,8 +23,11 @@ const CreateComment: FC<CreateCommentType> = ({ card }) => {
           showNotification("Вы успешно добавили комментарий!", "success");
           setText("");
         },
-        onError: () => {
-          showNotification("Вы не смогли  добавить комментарий :(", "error");
+        onError: (error) => {
+          showNotification(
+            getErrorMessage(error, "Не удалось добавить комментарий"),
+            "error",
+          );
           setText("");
         },
       },

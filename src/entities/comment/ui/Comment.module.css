@@ -1,0 +1,68 @@
+.comment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f4f5f7;
+  border-radius: 6px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.author {
+  font-size: 13px;
+  font-weight: 600;
+  color: #172b4d;
+}
+
+.date {
+  font-size: 11px;
+  color: #6b778c;
+  white-space: nowrap;
+}
+
+.commentText {
+  margin: 0;
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #172b4d;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.commentMenu {
+  flex-shrink: 0;
+}
+
+.commentMenu button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.commentMenu button:hover {
+  background: #e2e4e9;
+  opacity: 1;
+}
+
+.commentMenu img {
+  width: 14px;
+  height: 14px;
+}

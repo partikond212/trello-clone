@@ -11,7 +11,7 @@ const useEditColumn = () => {
     }: {
       id: string;
       title?: string;
-      order: number;
+      order?: number;
     }) => editColumn(id, order, title),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["columns"] });

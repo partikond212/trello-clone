@@ -79,7 +79,7 @@ export const deleteColumn  = async(columnId:string):Promise<void> => {
 
 
 
-export const  editColumn = async(columnId:string,order:number,title?:string) => {
+export const  editColumn = async(columnId:string,order?:number,title?:string) => {
     const res = await fetch(`${COLUMNS_API}/${columnId}`,{
         method:"PATCH",
         headers: {"Content-Type":'application/json'},

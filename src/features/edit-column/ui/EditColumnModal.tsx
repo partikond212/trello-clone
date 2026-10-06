@@ -18,7 +18,7 @@ const EditColumnModal: FC<IEditColumnModal> = ({
   onError,
   onSuccess,
 }) => {
-  const [title, setTitle] = useState(column.title);
+  const [title, setTitle] = useState(column.title ?? "");
   const { mutate, isPending } = useEditColumn();
 
   const handleSubmit = (e: React.FormEvent) => {

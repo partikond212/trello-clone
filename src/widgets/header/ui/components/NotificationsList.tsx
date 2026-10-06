@@ -1,10 +1,10 @@
-import React, { useState, type FC } from "react";
+import { useState, type FC } from "react";
 import styles from "./NotificationsList.module.css";
 type NotificationsListProps = {
   isOpen: boolean;
 };
 const NotificationsList: FC<NotificationsListProps> = ({ isOpen }) => {
-  const [incomingNotifications, setIncomingNotifications] = useState("");
+  const [incomingNotifications] = useState("");
   if (!incomingNotifications) {
     return (
       <p className={isOpen ? styles.notificationsList : styles.hidden}>

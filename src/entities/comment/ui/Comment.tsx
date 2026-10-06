@@ -1,4 +1,4 @@
-import React, { useState, type FC } from "react";
+import { useState, type FC } from "react";
 import type { CommentT } from "../model/Comment";
 import styles from "./Comment.module.css";
 import DeleteComment from "@/features/delete-comment/ui/DeleteComment";
